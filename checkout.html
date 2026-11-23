@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blue-Collar Labs — Checkout</title>
+<meta name="description" content="Blue-Collar Labs checkout — finish your purchase securely on Etsy.">
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #faf6ef; color: #1c1a17; }
+  header { background: #111; color: #f5c518; padding: 22px 16px; text-align: center; }
+  header h1 { margin: 0; font-size: 26px; letter-spacing: 1px; }
+  header p { margin: 4px 0 0; color: #e8e2d4; font-size: 14px; font-family: Arial, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 28px 16px 48px; }
+  .card { background: #fff; border: 1px solid #ddd3bf; border-radius: 10px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .card h2 { margin-top: 0; font-size: 21px; }
+  .card p { font-family: Arial, sans-serif; font-size: 15px; line-height: 1.55; }
+  a.btn { display: inline-block; background: #f1641e; color: #fff; font-family: Arial, sans-serif; font-weight: bold;
+          text-decoration: none; padding: 12px 22px; border-radius: 6px; margin-top: 8px; }
+  ul.products { list-style: none; padding: 0; font-family: Arial, sans-serif; }
+  ul.products li { padding: 10px 0; border-bottom: 1px solid #eee5d0; }
+  ul.products a { color: #111; font-weight: bold; text-decoration: none; }
+  ul.products .price { color: #555; }
+  footer { text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #888; padding: 18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>BLUE-COLLAR LABS</h1>
+  <p>Built to Create. Designed to Solve.</p>
+</header>
+<main>
+  <div class="card" id="redirect-card" hidden>
+    <h2 id="product-name">Taking you to checkout…</h2>
+    <p>Blue-Collar Labs completes every order securely through Etsy — same product, same price, with Etsy's buyer protection and tracking.</p>
+    <p id="fallback-line">If you aren't redirected in a few seconds, use this button:</p>
+    <a class="btn" id="continue-btn" href="https://www.etsy.com/shop/BlueCollarLabs">Continue to Etsy checkout</a>
+  </div>
+
+  <div class="card" id="shop-card" hidden>
+    <h2>Shop Blue-Collar Labs</h2>
+    <p>Every order is completed securely on Etsy. Pick your product:</p>
+    <ul class="products" id="product-list"></ul>
+    <a class="btn" href="https://www.etsy.com/shop/BlueCollarLabs">Visit the full Etsy shop</a>
+  </div>
+</main>
+<footer>Blue-Collar Labs · St. Petersburg, Florida · Orders fulfilled via Etsy</footer>
+
+<script>
+  // Catalog: keyed by the retailer_id used in the Meta catalog (the Etsy listing ID).
+  var PRODUCTS = {
+    "4529970293": { name: "3D Printed Pneumatic Mortar Launcher Desk Toy", price: "$29.99",
+                    url: "https://www.etsy.com/listing/4529970293" },
+    "4534088208": { name: "3D Printed Mini Crossbow Desk Toy — Cotton Swab Launcher", price: "$30.00",
+                    url: "https://www.etsy.com/listing/4534088208" },
+    "4600131934": { name: "Mini Pistol Keychain with Working Projectile Mechanism", price: "$15.00",
+                    url: "https://www.etsy.com/listing/4600131934" },
+    "4554237324": { name: "Heavy Duty 3D Printed Crossbow Toy", price: "$36.00",
+                    url: "https://www.etsy.com/listing/4554237324" },
+    "4521944291": { name: "3D Printed Fidget Spinner Gun — Clicker Toy", price: "$19.50",
+                    url: "https://www.etsy.com/listing/4521944291" }
+  };
+
+  var params = new URLSearchParams(window.location.search);
+  // Meta's website-checkout handoff may carry the product under any of these names.
+  var keys = ["item_id", "product_id", "retailer_id", "item", "product", "id", "listing_id"];
+  var itemId = null;
+  for (var i = 0; i < keys.length; i++) {
+    var v = params.get(keys[i]);
+    if (v) { itemId = String(v).replace(/\D/g, ""); break; }
+  }
+
+  var product = itemId ? PRODUCTS[itemId] : null;
+  if (product) {
+    document.getElementById("product-name").textContent = product.name + " — " + product.price;
+    var btn = document.getElementById("continue-btn");
+    btn.href = product.url;
+    btn.textContent = "Continue to Etsy checkout — " + product.price;
+    document.getElementById("redirect-card").hidden = false;
+    setTimeout(function () { window.location.replace(product.url); }, 2500);
+  } else {
+    var list = document.getElementById("product-list");
+    Object.keys(PRODUCTS).forEach(function (id) {
+      var p = PRODUCTS[id];
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = p.url; a.textContent = p.name;
+      var span = document.createElement("span");
+      span.className = "price"; span.textContent = " — " + p.price;
+      li.appendChild(a); li.appendChild(span);
+      list.appendChild(li);
+    });
+    document.getElementById("shop-card").hidden = false;
+  }
+</script>
+</body>
+</html>
