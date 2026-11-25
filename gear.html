@@ -13,95 +13,198 @@
 <meta property="og:description" content="A working print shop's honest buying guide: the P1S printer, the filaments we run daily, and which one to buy for what job.">
 <meta property="og:url" content="https://blue-collarlabs.com/gear.html">
 <meta property="og:image" content="https://blue-collarlabs.com/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: light; }
-  * { box-sizing: border-box; }
-  body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #0a1120; color: #eef3fa; }
-  header { background: #0d1830; color: #fff; padding: 22px 16px; text-align: center; border-bottom: 3px solid #1e9bff; }
-  header h1 { margin: 0; font-size: 26px; letter-spacing: 1px; }
-  header p { margin: 4px 0 0; color: #57baff; font-size: 14px; font-family: Arial, sans-serif; }
-  main { max-width: 640px; margin: 0 auto; padding: 28px 16px 48px; }
-  .card { background: #101d36; border: 1px solid #24406b; border-radius: 10px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.4); margin-bottom: 20px; }
-  .card h2 { margin-top: 0; font-size: 21px; }
-  .card h3 { font-size: 16px; margin-bottom: 4px; }
-  .card p { font-family: Arial, sans-serif; font-size: 15px; line-height: 1.55; }
-  a.btn { display: inline-block; background: #1e9bff; color: #fff; font-family: Arial, sans-serif; font-weight: bold;
-          text-decoration: none; padding: 12px 22px; border-radius: 6px; margin-top: 8px; }
-  .disclosure { background: #0e2a4a; border: 1px solid #1e9bff; border-radius: 10px; padding: 14px 18px; color: #dbeafe;
-                 font-family: Arial, sans-serif; font-size: 13.5px; line-height: 1.5; margin-bottom: 20px; }
-  footer { text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #7d92b2; padding: 18px; }
-  footer a { color: #57baff; }
-  header .logo { width: 130px; height: auto; border-radius: 14px; margin-bottom: 12px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #070d1a; --card: #101d36; --line: rgba(87,186,255,.16);
+    --accent: #1e9bff; --accent2: #57baff; --text: #eef3fa; --muted: #9db2cc;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  a { color: var(--accent2); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(7,13,26,.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; max-width: 1080px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+  .brand img { width: 42px; height: 42px; border-radius: 10px; }
+  .brand b { font-weight: 900; letter-spacing: .5px; font-size: 17px; }
+  .brand b span { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14.5px; font-weight: 600; }
+  .nav-links a:hover { color: #fff; }
+
+  .page-hero { text-align: center; padding: 64px 20px 10px;
+    background: radial-gradient(640px 320px at 20% -60px, rgba(30,155,255,.24), transparent 65%),
+                radial-gradient(700px 340px at 85% -80px, rgba(30,155,255,.14), transparent 65%); }
+  .chip { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+          color: var(--accent2); border: 1px solid var(--line); background: rgba(30,155,255,.08);
+          padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
+  .page-hero h1 { font-size: clamp(30px, 4.8vw, 46px); font-weight: 900; line-height: 1.12; letter-spacing: -1px; max-width: 780px; margin: 0 auto 16px; }
+  .page-hero h1 .grad { background: linear-gradient(92deg, #57baff, #1e9bff 55%, #7cc7ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .page-hero p { color: var(--muted); font-size: 16.5px; max-width: 760px; margin: 0 auto; }
+
+  .disclosure { max-width: 1080px; margin: 30px auto 0; padding: 0 20px; }
+  .disclosure-in { background: rgba(30,155,255,.07); border: 1px solid rgba(87,186,255,.35); border-radius: 14px; padding: 16px 20px; color: #dbeafe; font-size: 13.5px; }
+
+  section { padding: 44px 0 6px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .card { background: linear-gradient(180deg, #12203c, var(--card)); border: 1px solid var(--line); border-radius: 18px; padding: 26px;
+          display: flex; flex-direction: column; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+  .card:hover { transform: translateY(-4px); border-color: rgba(87,186,255,.45); box-shadow: 0 18px 38px rgba(0,0,0,.45); }
+  .card h2 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 15px; flex: 1; }
+  .btn-row { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  a.btn { display: inline-block; background: linear-gradient(180deg, #2ea6ff, #1287e8); color: #fff; font-weight: 700; font-size: 15px;
+          text-decoration: none; padding: 13px 20px; border-radius: 12px; text-align: center;
+          box-shadow: 0 10px 26px rgba(30,155,255,.3); transition: transform .18s ease, box-shadow .18s ease; }
+  a.btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(30,155,255,.42); }
+
+  .prose { max-width: 780px; margin: 0 auto; }
+  .prose h2 { font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; letter-spacing: -.5px; text-align: center; margin-bottom: 16px; }
+  .prose h3 { font-size: 18px; font-weight: 800; margin: 20px 0 8px; }
+  .prose p { color: var(--muted); font-size: 16px; margin-bottom: 14px; }
+  .prose strong { color: #fff; }
+
+  .cta-band { text-align: center; background: linear-gradient(120deg, #10264a, #0d1830); border: 1px solid rgba(87,186,255,.35); border-radius: 22px; padding: 38px 30px; }
+  .cta-band h2 { font-size: clamp(22px, 3.2vw, 29px); font-weight: 800; margin-bottom: 10px; }
+  .cta-band p { color: #c3d4ea; font-size: 16px; max-width: 680px; margin: 0 auto 20px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 70px; background: #05090f; }
+  .foot-in { max-width: 1080px; margin: 0 auto; padding: 42px 20px 30px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
+  footer h4 { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+  footer p, footer a { color: var(--muted); font-size: 14px; }
+  footer a { text-decoration: none; display: block; margin-bottom: 8px; }
+  footer a:hover { color: #fff; }
+  .foot-bottom { text-align: center; color: #5f7694; font-size: 12.5px; padding: 0 20px 26px; }
+
+  @media (max-width: 820px) {
+    .grid, .foot-in { grid-template-columns: 1fr; }
+    .nav-links { gap: 16px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <img class="logo" src="logo.png" alt="Blue-Collar Labs logo">
-  <h1>BLUE-COLLAR <span style="color:#1e9bff">LABS</span></h1>
-  <p>Built to Create. Designed to Solve.</p>
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="/"><img src="logo.png" alt="Blue-Collar Labs logo"><b>BLUE-COLLAR <span>LABS</span></b></a>
+    <div class="nav-links">
+      <a href="https://www.etsy.com/shop/BlueCollarLabs">Shop</a>
+      <a href="/gear.html">Gear Guide</a>
+      <a href="/#faq">FAQ</a>
+      <a href="https://www.facebook.com/61592542116487">Facebook</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div><span class="chip">Blue-Collar Labs · Gear Guide</span></div>
+  <h1>The Gear We <span class="grad">Actually Run</span> in the Shop</h1>
+  <p>People ask us all the time what 3D printer and filament we use to make the desk toys, launchers and keychains in our Etsy shop. This page is the honest answer: the exact machines and materials on our own bench in St. Petersburg, Florida, with notes on what each one is good for and who should buy it. Nothing here is listed because a brand paid us to list it — if a spool or a machine did not earn its place in a working print shop that ships real products every week, it is not on this page. Start with the printer, then match your filament to the job using the guide below.</p>
 </header>
-<main>
-  <div class="disclosure">
+
+<div class="disclosure">
+  <div class="disclosure-in">
     <strong>Disclosure:</strong> Blue-Collar Labs is a participant in the Amazon Services LLC Associates Program. Links on this page are affiliate links — if you buy through them, we earn a small commission at no extra cost to you. We only list gear we actually run in our shop.
   </div>
+</div>
 
-  <div class="card">
-    <h2>The Blue-Collar Labs Gear Guide — What We Actually Run in the Shop</h2>
-    <p>People ask us all the time what 3D printer and filament we use to make the desk toys, launchers and keychains in our Etsy shop. This page is the honest answer: the exact machines and materials on our own bench in St. Petersburg, Florida, with notes on what each one is good for and who should buy it. Nothing here is listed because a brand paid us to list it — if a spool or a machine did not earn its place in a working print shop that ships real products every week, it is not on this page. Start with the printer, then match your filament to the job using the guide below.</p>
-  </div>
+<main class="wrap">
+  <section>
+    <div class="grid">
+      <div class="card">
+        <h2>The printer — Bambu Lab P1S</h2>
+        <p>This is the machine behind every Blue-Collar Labs product. The Bambu Lab P1S is fast, enclosed, and reliable enough to run production parts all day — the enclosed chamber keeps temperatures stable for cleaner prints, and the speed means a desk toy that took all afternoon on an older printer finishes in a fraction of the time. If you are buying your first 3D printer for a home workshop, this is the one we recommend without hesitation: it prints beautifully right out of the box and grows with you into tougher materials later. The Combo version adds the AMS unit for multi-color prints and automatic filament switching — worth it if you plan on multi-color designs like our his-and-hers keychains, or if you just hate swapping spools by hand.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://www.amazon.com/dp/B0CHDM8VVZ?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">Bambu Lab P1S on Amazon</a>
+          <a class="btn" href="https://www.amazon.com/dp/B0CHDS1DMC?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">P1S Combo (with AMS) on Amazon</a>
+        </div>
+      </div>
 
-  <div class="card">
-    <h2>The printer — Bambu Lab P1S</h2>
-    <p>This is the machine behind every Blue-Collar Labs product. The Bambu Lab P1S is fast, enclosed, and reliable enough to run production parts all day — the enclosed chamber keeps temperatures stable for cleaner prints, and the speed means a desk toy that took all afternoon on an older printer finishes in a fraction of the time. If you are buying your first 3D printer for a home workshop, this is the one we recommend without hesitation: it prints beautifully right out of the box and grows with you into tougher materials later. The Combo version adds the AMS unit for multi-color prints and automatic filament switching — worth it if you plan on multi-color designs like our his-and-hers keychains, or if you just hate swapping spools by hand.</p>
-    <a class="btn" href="https://www.amazon.com/dp/B0CHDM8VVZ?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">Bambu Lab P1S on Amazon</a>
-    <a class="btn" href="https://www.amazon.com/dp/B0CHDS1DMC?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">P1S Combo (with AMS) on Amazon</a>
-  </div>
+      <div class="card">
+        <h2>The filament — Bambu Lab PLA Basic</h2>
+        <p>Our everyday filament for desk toys and prototypes. PLA is the easiest filament to print — low warping, no special ventilation needs, and clean detail — which makes it the right first spool for any beginner. Bambu's PLA Basic adds consistent diameter, reliable prints, and an RFID spool that works with the AMS so the printer knows exactly what is loaded and picks the right settings by itself. If you are brand new to 3D printing, buy this first and learn the machine before you chase exotic materials.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://www.amazon.com/dp/B0C4GBJCSV?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">PLA Basic (Black, with spool) on Amazon</a>
+        </div>
+      </div>
 
-  <div class="card">
-    <h2>The filament — Bambu Lab PLA Basic</h2>
-    <p>Our everyday filament for desk toys and prototypes. PLA is the easiest filament to print — low warping, no special ventilation needs, and clean detail — which makes it the right first spool for any beginner. Bambu's PLA Basic adds consistent diameter, reliable prints, and an RFID spool that works with the AMS so the printer knows exactly what is loaded and picks the right settings by itself. If you are brand new to 3D printing, buy this first and learn the machine before you chase exotic materials.</p>
-    <a class="btn" href="https://www.amazon.com/dp/B0C4GBJCSV?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">PLA Basic (Black, with spool) on Amazon</a>
-  </div>
+      <div class="card">
+        <h2>Filament bundles — stock up and save</h2>
+        <p>Multi-color bundles are the cheapest way to build a filament library. Eight 250g mini spools per pack — enough of each color for keychains, desk toys and multi-color prints without buying eight full kilos. They are also the smartest way to find out which colors you actually print with before committing to full spools. The PLA+ 2.0 bundle is the tougher version of the same idea, with better impact strength for parts that get handled, dropped and carried on a keyring.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://www.amazon.com/dp/B0FGQ6HH9V?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">SUNLU PLA+ 2.0 Bundle (8 colors) on Amazon</a>
+          <a class="btn" href="https://www.amazon.com/dp/B0FH1PBS3D?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">SUNLU PLA Bundle (8 colors) on Amazon</a>
+        </div>
+      </div>
 
-  <div class="card">
-    <h2>Filament bundles — stock up and save</h2>
-    <p>Multi-color bundles are the cheapest way to build a filament library. Eight 250g mini spools per pack — enough of each color for keychains, desk toys and multi-color prints without buying eight full kilos. They are also the smartest way to find out which colors you actually print with before committing to full spools. The PLA+ 2.0 bundle is the tougher version of the same idea, with better impact strength for parts that get handled, dropped and carried on a keyring.</p>
-    <a class="btn" href="https://www.amazon.com/dp/B0FGQ6HH9V?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">SUNLU PLA+ 2.0 Bundle (8 colors) on Amazon</a>
-    <a class="btn" href="https://www.amazon.com/dp/B0FH1PBS3D?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">SUNLU PLA Bundle (8 colors) on Amazon</a>
-  </div>
+      <div class="card">
+        <h2>PLA+ — the tougher everyday filament</h2>
+        <p>PLA+ prints as easy as regular PLA but with noticeably better impact strength and layer adhesion — our pick when a part needs to take a knock, not just sit on a desk. Think keychains, tool holders, brackets and anything a kid or a coworker will get their hands on. eSUN's PLA+ is the shop standard here: consistent spool after spool, and the price per kilo is hard to beat for the quality. If you only stock one filament beyond basic PLA, make it PLA+.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://www.amazon.com/dp/B0D256S2RQ?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">eSUN PLA+ (Black, 1kg) on Amazon</a>
+        </div>
+      </div>
 
-  <div class="card">
-    <h2>PLA+ — the tougher everyday filament</h2>
-    <p>PLA+ prints as easy as regular PLA but with noticeably better impact strength and layer adhesion — our pick when a part needs to take a knock, not just sit on a desk. Think keychains, tool holders, brackets and anything a kid or a coworker will get their hands on. eSUN's PLA+ is the shop standard here: consistent spool after spool, and the price per kilo is hard to beat for the quality. If you only stock one filament beyond basic PLA, make it PLA+.</p>
-    <a class="btn" href="https://www.amazon.com/dp/B0D256S2RQ?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">eSUN PLA+ (Black, 1kg) on Amazon</a>
-  </div>
+      <div class="card">
+        <h2>PETG &amp; PETG-CF — functional parts</h2>
+        <p>When a print has to live outside, survive heat in a truck cab, or hold real weight, we reach for PETG. PETG HF is our go-to for durable, weather-resistant parts that print nearly as fast as PLA, with much better heat and impact resistance. When a part needs real stiffness, PETG-CF adds carbon fiber for strength and a matte finish that hides layer lines — just run it with a hardened steel nozzle, because carbon fiber eats brass nozzles alive. Bambu sells PETG-CF direct, so that link goes to their store instead of Amazon.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://www.amazon.com/dp/B0D9PZNV4F?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">Bambu Lab PETG HF (White, with spool) on Amazon</a>
+          <a class="btn" href="https://us.store.bambulab.com/products/petg-cf" rel="noopener" target="_blank">Bambu Lab PETG-CF at the Bambu Store</a>
+        </div>
+      </div>
 
-  <div class="card">
-    <h2>PETG &amp; PETG-CF — functional parts</h2>
-    <p>When a print has to live outside, survive heat in a truck cab, or hold real weight, we reach for PETG. PETG HF is our go-to for durable, weather-resistant parts that print nearly as fast as PLA, with much better heat and impact resistance. When a part needs real stiffness, PETG-CF adds carbon fiber for strength and a matte finish that hides layer lines — just run it with a hardened steel nozzle, because carbon fiber eats brass nozzles alive. Bambu sells PETG-CF direct, so that link goes to their store instead of Amazon.</p>
-    <a class="btn" href="https://www.amazon.com/dp/B0D9PZNV4F?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">Bambu Lab PETG HF (White, with spool) on Amazon</a>
-    <a class="btn" href="https://us.store.bambulab.com/products/petg-cf" rel="noopener" target="_blank">Bambu Lab PETG-CF at the Bambu Store</a>
-  </div>
+      <div class="card">
+        <h2>PLA Matte — the clean finish</h2>
+        <p>Matte PLA hides layer lines better than any other PLA and gives prints a smooth, professional look straight off the plate — no sanding, no painting. It is our choice for display pieces, gifts and anything that gets photographed, because the matte finish reads as a finished product instead of a prototype. Great for display pieces and gifts.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://www.amazon.com/dp/B0C4G9S2CB?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">Bambu Lab PLA Matte (Cyan, with spool) on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h2>PLA Matte — the clean finish</h2>
-    <p>Matte PLA hides layer lines better than any other PLA and gives prints a smooth, professional look straight off the plate — no sanding, no painting. It is our choice for display pieces, gifts and anything that gets photographed, because the matte finish reads as a finished product instead of a prototype. Great for display pieces and gifts.</p>
-    <a class="btn" href="https://www.amazon.com/dp/B0C4G9S2CB?tag=bluecollarlab-20" rel="sponsored nofollow noopener" target="_blank">Bambu Lab PLA Matte (Cyan, with spool) on Amazon</a>
-  </div>
+  <section>
+    <div class="prose">
+      <h2>PLA vs PLA+ vs PETG — Which Filament Should You Buy?</h2>
+      <p>Here is the short version we give every beginner. <strong>PLA</strong> is for learning, prototypes and display pieces: easiest to print, best detail, but it softens in a hot car. <strong>PLA+</strong> is the everyday workhorse: nearly as easy to print, meaningfully tougher, and the right default for parts that get used and handled. <strong>PETG</strong> is for functional parts that face heat, weather or stress: a little more finicky to dial in, but far more durable outdoors and under load. <strong>PETG-CF</strong> is the stiff, premium option for parts that must not flex — with the hardened-nozzle warning above. Buy in that order as your projects grow, and you will never have a spool sitting around that you cannot use.</p>
+      <h3>Do I need the AMS?</h3>
+      <p>Only if you want multi-color prints or hands-off filament switching. Every filament on this page prints fine on a standalone P1S; the AMS is a convenience and a creative upgrade, not a requirement.</p>
+    </div>
+  </section>
 
-  <div class="card">
-    <h2>PLA vs PLA+ vs PETG — Which Filament Should You Buy?</h2>
-    <p>Here is the short version we give every beginner. <strong>PLA</strong> is for learning, prototypes and display pieces: easiest to print, best detail, but it softens in a hot car. <strong>PLA+</strong> is the everyday workhorse: nearly as easy to print, meaningfully tougher, and the right default for parts that get used and handled. <strong>PETG</strong> is for functional parts that face heat, weather or stress: a little more finicky to dial in, but far more durable outdoors and under load. <strong>PETG-CF</strong> is the stiff, premium option for parts that must not flex — with the hardened-nozzle warning above. Buy in that order as your projects grow, and you will never have a spool sitting around that you cannot use.</p>
-    <h3>Do I need the AMS?</h3>
-    <p>Only if you want multi-color prints or hands-off filament switching. Every filament on this page prints fine on a standalone P1S; the AMS is a convenience and a creative upgrade, not a requirement.</p>
-  </div>
-
-  <div class="card">
-    <h2>Our own products</h2>
-    <p>The gear above makes the products we sell. See what comes off the printer in our Etsy shop — the 3D printed pneumatic mortar launcher, mini crossbows, fidget toys and keychains are all printed on the P1S with the filaments listed on this page.</p>
-    <a class="btn" href="https://www.etsy.com/shop/BlueCollarLabs">Shop Blue-Collar Labs on Etsy</a>
-  </div>
+  <section>
+    <div class="cta-band">
+      <h2>Our own products</h2>
+      <p>The gear above makes the products we sell. See what comes off the printer in our Etsy shop — the 3D printed pneumatic mortar launcher, mini crossbows, fidget toys and keychains are all printed on the P1S with the filaments listed on this page.</p>
+      <a class="btn" href="https://www.etsy.com/shop/BlueCollarLabs" style="max-width:340px; margin:0 auto;">Shop Blue-Collar Labs on Etsy</a>
+    </div>
+  </section>
 </main>
-<footer>Blue-Collar Labs · St. Petersburg, Florida · <a href="/">Home</a></footer>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <h4>Blue-Collar Labs</h4>
+      <p>Built to Create. Designed to Solve.<br>Small-batch 3D printed desk toys and gadgets, designed and printed in St. Petersburg, Florida.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="https://www.etsy.com/shop/BlueCollarLabs">Etsy Shop</a>
+      <a href="/">Home</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <a href="https://www.facebook.com/61592542116487">Facebook</a>
+      <a href="https://www.etsy.com/shop/BlueCollarLabs">Etsy</a>
+    </div>
+  </div>
+  <div class="foot-bottom">Blue-Collar Labs · St. Petersburg, Florida · Orders fulfilled via Etsy</div>
+</footer>
 </body>
 </html>
